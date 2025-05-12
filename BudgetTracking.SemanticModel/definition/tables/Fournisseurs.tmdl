@@ -1,0 +1,49 @@
+table Fournisseurs
+	lineageTag: 9fbf2c6b-0ff7-4a0a-ad85-23168bd5bad3
+
+	column ressourceID
+		dataType: int64
+		formatString: 0
+		lineageTag: fc10ae1a-71e9-4ef0-a366-b7c6f23aa79a
+		summarizeBy: none
+		sourceColumn: ressourceID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column fournisseurID
+		dataType: string
+		lineageTag: 37b193d3-5f5a-43fb-97f9-30c6bdcfe09a
+		summarizeBy: none
+		sourceColumn: fournisseurID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column fournisseurLibele
+		dataType: string
+		lineageTag: 5da0a0b3-b836-4530-ae04-dc2aa330e095
+		summarizeBy: none
+		sourceColumn: fournisseurLibele
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fournisseurs = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Nouhaila\OneDrive - Ministere de l'education nationale, du préscolaire et des sports\BCP TECH 🎠\DATA_BOONMANAGER_BI_ANONYMISÉ_COMPLET.xlsx"), null, true),
+				    Fournisseurs_Sheet = Source{[Item="Fournisseurs",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Fournisseurs_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ressourceID", Int64.Type}, {"fournisseurID", type text}, {"fournisseurLibele", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,69 @@
+table 'Project Performance Metrics'
+	lineageTag: 61d034ae-eeb7-4736-92ab-d7352600d8c2
+
+	measure 'Number of Signed Projects' = DISTINCTCOUNTNOBLANK('Projet signé'[projectID])
+		formatString: 0
+		lineageTag: de81bdef-5312-48b9-afda-bfaef35cac9c
+
+	measure ClosedProjectsThisYear =
+			
+			VAR AnneeEnCours = YEAR(TODAY())
+			RETURN
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT(Temps[ProjetID]),
+			        YEAR(Temps[Parsed Date]) = AnneeEnCours,
+			        Projets[État] = "Archivé"
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: b9a0aaa2-c8f8-4b54-8552-36732e29efe7
+
+	measure 'Archived Projects' = ```
+			
+			COALESCE(
+			    CALCULATE(
+			        COUNTROWS('Projets'),
+			        'Projets'[État] = "Archivé"
+			    ),
+			    0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: dea267b8-582d-4d08-bc2a-f0762c53ee6d
+
+	measure StartedProjectsThisYear =
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT('Projet signé'[projectID]),
+			        FILTER(
+			            'Projet signé',
+			            YEAR('Projet signé'[startDate]) = YEAR(TODAY())
+			        ),
+			        'Projets'[État] = "En cours"
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 459a09f1-4198-406d-85ce-368f546128de
+
+	column Column
+		formatString: 0
+		lineageTag: 1373e03d-356a-468e-aa6d-9bc9a3b5c71d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Project Performance Metrics' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = f08a994244bd45729047c9087e5a1e36
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

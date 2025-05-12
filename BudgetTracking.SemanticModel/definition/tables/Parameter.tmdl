@@ -1,0 +1,45 @@
+table Parameter
+	lineageTag: 25813842-978d-453b-b9aa-8b40695f4c41
+
+	column Parameter
+		lineageTag: 2ee0623e-5408-4371-94bc-8293a58c09e4
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		lineageTag: 5510657f-6622-428c-9f09-55ed06a0a8de
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		formatString: 0
+		lineageTag: c29171fd-9ddb-4541-a8cf-c7a65c636182
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter = calculated
+		mode: import
+		source =
+				{
+				    ("Type", NAMEOF('Projets'[Type]), 0)
+				}
+
+	annotation PBI_Id = 71003edce1304d099656c51857e9db50
+

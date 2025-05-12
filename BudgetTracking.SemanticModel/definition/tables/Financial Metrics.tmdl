@@ -1,0 +1,929 @@
+table 'Financial Metrics'
+	lineageTag: 705e6957-7497-483e-9549-78e6cdf56bde
+
+	measure 'Total Turnover' = ```
+			
+			SUMX(
+			    'Projet Prestation',
+			    IF(
+			        VALUE('Projet Prestation'[state]) <> 0,
+			        COALESCE('Projet Prestation'[turnoverExcludingTax_MAD], 0),  -- If blank, return 0
+			        0
+			    )
+			)
+			
+			```
+		formatString: #,0.00
+		lineageTag: 6cfae9f1-765c-4a23-aa64-45d59875ca6f
+
+	measure 'Total Cost' = ```
+			
+			COALESCE(
+			    SUMX(
+			        'Projet Prestation',
+			        IF(
+			            VALUE('Projet Prestation'[state]) <> 0,
+			            'Projet Prestation'[costsExcludingTax_MAD],
+			            0
+			        )
+			    ),
+			    0
+			)
+			
+			```
+		lineageTag: 147b9e38-ff50-471d-b1cf-31152b80d837
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gross Margin' = [Total Turnover]-[Total Cost]
+		lineageTag: d5c12358-0282-473f-9753-c5ac4c1099cd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit Margin (%)' = DIVIDE([Gross Margin], [Total Turnover], 0) * 100
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fe4892ba-630e-49ed-8307-00c9a0f01a7b
+
+	measure 'Currency Impact on Budget' = ```
+			SUMX('Projet Prestation', 'Projet Prestation'[exchangeRate] * 'Projet Prestation'[costsExcludingTax]) 
+			```
+		lineageTag: a2fff6fc-cb2f-4513-bb4f-eaf1d730ed0e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Signed Amount' = ```
+			COALESCE(SUMX(
+			    'Projet signé', 
+			    'Projet signé'[numberOfDaysInvoicedOrQuantity] * RELATED('Ressources'[TJM-MAD])
+			),
+			    0
+			)
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 07425bd5-2403-4662-b249-5112c3c92931
+
+	measure 'Actual Amount' = ```
+			COALESCE(SUMX(
+			    'Temps', 
+			    'Temps'[Durée] * RELATED('Ressources'[TJM-MAD])
+			),
+			    0
+			)
+			```
+		lineageTag: 696cb770-c824-4a44-9c93-f4cba0d96503
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Budgeted Cost​' = ```
+			[Signed Amount] + SUM('Projet Prestation'[costsExcludingTax_MAD]) 
+			```
+		lineageTag: e7d5bcf1-a899-4699-9e65-9552afb11d2d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual External Costs' =
+			
+			SUMX(
+			    'Projet Prestation',
+			    IF(
+			        VALUE('Projet Prestation'[state]) <> 0,
+			        'Projet Prestation'[costsExcludingTax_MAD],
+			        0
+			    )
+			)
+		lineageTag: dc917d2e-806d-44eb-9356-3f2dd68e4393
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual Revenue' =
+			
+			SUMX(
+			    'Projet Prestation',
+			    IF(
+			        VALUE('Projet Prestation'[state]) <> 0,
+			        'Projet Prestation'[turnoverExcludingTax_MAD],
+			        0
+			    )
+			)
+		lineageTag: dcc7718d-dbeb-4a78-99b7-3b0a6113fdb3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Actual Cost' =
+			
+			[Actual Amount] + [Actual External Costs]
+		lineageTag: 49d85107-656d-4866-a545-d1798409bdac
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual Profit Margin' =
+			
+			[Actual Revenue] - [Total Cost]
+		lineageTag: fe3cb811-4225-4b93-a209-4d12813a56ee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Amount Variance' = [Signed Amount] - [Actual Amount]
+		lineageTag: eabdcbe3-a8c0-4c53-a933-46a2ac8c1911
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Planned vs. Actual Workdays' = SUM('Projet Signé'[numberOfDaysInvoicedOrQuantity]) - SUM('Temps'[Durée])
+		lineageTag: b0e3d8dd-2007-4b82-b5fa-f4c15ee6910a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Margin on Budgeted Revenue vs. Actual Internal Cost' =
+			
+			SUM('Projet Prestation'[turnoverExcludingTax]) - [Actual Amount]
+		lineageTag: 3cf3e741-ed79-46a3-b502-f9a097ea6fd7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue progress rate' =
+			DIVIDE(
+			    [Actual Revenue],
+			    SUM('Projet Prestation'[turnoverExcludingTax])
+			)
+		lineageTag: c6426fea-bee6-43d3-a326-50f7c865cb83
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prestation progress rate' =
+			DIVIDE(
+			    [Actual External Costs],
+			    SUM('Projet Prestation'[costsExcludingTax])
+			)
+		lineageTag: b4cc7589-a3ed-4ab7-80ae-42490ab12da7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Cost per JH' = DIVIDE([Total Actual Cost], SUM('Temps'[Durée]), 0)
+		lineageTag: 9f4b7f17-3ab3-4ac8-b745-26b73f84d15a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual Margin Rate' = DIVIDE([Actual Profit Margin], [Actual External Costs], 0) * 100
+		lineageTag: 25c1f15c-c219-4364-af09-104578b54b01
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Projected Profit Margin' =
+			
+			SUM('Projet Prestation'[turnoverExcludingTax_MAD]) - [Total Budgeted Cost​]
+		lineageTag: 7e10d66a-63b2-4530-95c9-f637bbdf972f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Margin Variance' = [Projected Profit Margin] - [Actual Profit Margin]
+		lineageTag: 5c182567-be23-4f12-a201-0ed2991c60ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost Variance' =
+			
+			[Budgeted Costs]-[Total Cost]
+		lineageTag: 78025da0-dcf3-4d7b-a0cc-d0232b6234bd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Project Profitability Index' =
+			
+			DIVIDE(
+			    [Actual Profit Margin],
+			    [Total Actual Cost]
+			)
+		lineageTag: 49b27f48-5bec-44ec-960c-147fdafa61fc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure EmployeeCount2 = ```
+			
+			IF(
+			    ISBLANK(DISTINCTCOUNT('Projet signé'[ressourceID])),
+			    0,
+			    DISTINCTCOUNT('Projet signé'[ressourceID])
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 7fac3aa0-0208-4bb7-98a4-da9303c21be3
+
+	measure 'Projects Ended' = ```
+			
+			CALCULATE(
+			    COUNTROWS('Projet signé'),
+			    USERELATIONSHIP('Date'[Date], 'projet signé'[endDate])
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 23bf58be-c08d-451e-85db-e7d4adca936b
+
+	measure 'Turnover Over Time' =
+			
+			CALCULATE(
+			    SUM('Projet Prestation'[turnoverExcludingTax_MAD]),
+			    USERELATIONSHIP('Date'[Date], 'Projet Prestation'[date])
+			)
+		lineageTag: 1baa1a28-603b-4a73-8a24-f391bbe4fed0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Projects Started' =
+			
+			CALCULATE(
+			    COUNTROWS('Projet signé')
+			)
+		formatString: 0
+		lineageTag: aeab80fc-173f-4a7f-b56f-31bfefcab5c8
+
+	measure 'Signed Amount Estimate' =
+			SUMX(
+			    'Projet signé',
+			    DATEDIFF('Projet signé'[startDate], 'Projet signé'[endDate], DAY) * RELATED('Ressources'[TJM-MAD])
+			)
+		lineageTag: 456900ae-9189-4832-b539-c895e5f3bbf0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target Margin' =
+			
+			[Projected Profit Margin] - IF([Amount Variance] < 0, -[Amount Variance], 0)
+		lineageTag: 119c2879-89e3-4383-9674-20516354454c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Workload Gap (Ecart JH)' =
+			
+			SUM('Projet Signé'[numberOfDaysInvoicedOrQuantity]) - SUM('Temps'[Durée])
+		formatString: " +0;-0;0"
+		lineageTag: 7283126a-e18f-4102-874a-e762e3d4ed40
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Real Profitability' = DIVIDE([Actual Profit Margin], [Total Turnover])
+		lineageTag: 94f53cbc-9771-47fa-befb-b0580d337911
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Margin Alert Flag' =
+			
+			SWITCH(
+			    TRUE(),
+			    [Actual Profit Margin] >= [Target Margin], "Good",
+			    [Actual Profit Margin] < [Target Margin], "Bad",
+			    "Neutral"
+			)
+		lineageTag: 2dcd8da4-e226-4b19-8aef-4e6fc17bf136
+
+	measure Ecart_JH_Explanation =
+			
+			SWITCH(
+			    TRUE(),
+			    ISBLANK([Workload Gap (Ecart JH)]), "⚪ No planned or tracked time for this resource",
+			    [Workload Gap (Ecart JH)] > 0, "🟢 More invoiced than worked (potential overbilling)",
+			    [Workload Gap (Ecart JH)] < 0, "🔴 More worked than invoiced (unbilled effort)",
+			    [Workload Gap (Ecart JH)] = 0, "🟡 Balanced: worked = invoiced"
+			)
+		lineageTag: 4e104e9f-e248-4efd-a643-5d015a87b371
+
+	measure 'Budgeted Costs' =
+			
+			COALESCE(SUM('Projet signé'[costsProductionExcludingTax_MAD]), 0)
+		lineageTag: 2a40bfa1-0a06-4816-b1fb-67b534fe6d3e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MaxDate = CALCULATE(MAX('Date'[Date]),REMOVEFILTERS('Date'[Date]))
+		formatString: General Date
+		lineageTag: dfed6ebf-b7de-492c-92dd-c4f46173f5cd
+
+	measure MinDate = CALCULATE(MIN('Date'[Date]),REMOVEFILTERS('Date'[Date]))
+		formatString: General Date
+		lineageTag: 3f96e03b-2abe-4187-8c38-e116d0b2c4db
+
+	measure 'Revenue YTD' = TOTALYTD([Total Turnover], 'Date'[Date])
+		lineageTag: 8eed2702-0139-4661-8403-714fc45e27ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue YOY' = CALCULATE([Total Turnover], SAMEPERIODLASTYEAR('Date'[Date]))
+		lineageTag: cbd1a45a-5000-40d8-8244-2bc8cbc0bf80
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue MOM' = ```
+			CALCULATE(
+			    [Total Turnover], 
+			    DATEADD('Date'[Date], -1, MONTH)
+			)
+			```
+		lineageTag: 806d7686-3d3a-48e9-8bae-8f0f39f61e20
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost YTD' = TOTALYTD([Total Cost], 'Date'[Date])
+		lineageTag: e810a770-ec0a-4655-91a9-d0961ad46f44
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost Last Year' =
+			
+			CALCULATE(
+			    [Total Cost],
+			    DATEADD('Date'[Date], -1, YEAR)  -- Shift the date context by one year
+			)
+		lineageTag: 6204b6c8-f902-4be9-accd-96c706b4ab84
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost MOM' = ```
+			CALCULATE(
+			    [Total Cost], 
+			    DATEADD('Date'[Date], -1, MONTH)
+			)
+			```
+		lineageTag: 94634134-4548-4d2c-9ba0-290de410bdb5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Revenue' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Time_Mode'[Time Mode]),
+			    "Last Month", [Revenue MOM],"Last Year",[Revenue Last Year],"Year to Date", [Revenue YTD],
+			    [Revenue YTD]  -- Default if nothing selected
+			)
+		lineageTag: 95ee053a-8dc1-4336-86fa-f171914de909
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Cost' = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('Time_Mode'[Time Mode]),
+			    "Last Month", [Cost MOM],"Last Year", [Cost Last Year],"Year to Date", [Cost YTD],
+			    [Cost YTD]  -- Default if nothing selected
+			)
+			
+			```
+		lineageTag: 88f7d376-1abf-4ce8-82f8-c940b5b50549
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost Yesterday' = ```
+			
+			CALCULATE(
+			    [Total Cost], 
+			    'Date'[Date] = TODAY() - 1
+			)
+			```
+		lineageTag: 59ad0ae2-29be-4be4-99f3-cc225e30fada
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost Last Week' = ```
+			
+			VAR StartOfLastWeek = TODAY() - WEEKDAY(TODAY(), 2) - 7  -- Adjust the start date for last week
+			VAR EndOfLastWeek = TODAY() - WEEKDAY(TODAY(), 2)  -- Adjust the end date for last week
+			RETURN 
+			CALCULATE(
+			    [Total Cost], 
+			    'Date'[Date] >= StartOfLastWeek, 
+			    'Date'[Date] < EndOfLastWeek
+			)
+			
+			```
+		lineageTag: be2830fb-7cc3-41cd-a2f8-67f327a8df37
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost Last Month' =
+			
+			CALCULATE(
+			    [Total Cost],
+			    'Date'[Date] >= EDATE(TODAY(), -1),  -- Start of last month
+			    'Date'[Date] < TODAY()  -- End of last month
+			)
+		lineageTag: 310f212c-34b4-4ec8-94ef-a230653db3bf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Last Week' =
+			
+			CALCULATE(
+			    [Total Turnover],
+			    'Date'[Date] >= TODAY() - WEEKDAY(TODAY(), 2) - 7,  -- Start of last week
+			    'Date'[Date] < TODAY() - WEEKDAY(TODAY(), 2)  -- End of last week
+			)
+		lineageTag: 403bd109-1475-4ea4-907d-ffb84e137cb5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Last Month' =
+			
+			CALCULATE(
+			    [Total Turnover],
+			    'Date'[Date] >= EDATE(TODAY(), -1),  -- Start of last month
+			    'Date'[Date] < TODAY()  -- End of last month
+			)
+		lineageTag: 9825855b-0c13-4813-9e1d-8b45f9b0f5c3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Last Year' =
+			
+			CALCULATE(
+			    [Total Turnover],
+			    DATEADD('Date'[Date], -1, YEAR)  -- Shift the date context by one year
+			)
+		lineageTag: b5457d4f-15ff-417f-8d50-271bcf8cab6a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Yesterday' = ```
+			
+			CALCULATE(
+			    [Total Turnover], 
+			    'Date'[Date] = TODAY() - 1
+			)
+			```
+		lineageTag: 20850e00-f716-4e16-a84a-0b309dac6d9a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue This Month' = ```
+			
+			CALCULATE(
+			    [Total Turnover],
+			    FILTER(
+			        'Date',
+			        MONTH('Date'[Date]) = MONTH(TODAY()) &&
+			        YEAR('Date'[Date]) = YEAR(TODAY())
+			    )
+			)
+			
+			```
+		lineageTag: c24ce9dc-c9b3-42cf-90f6-4e357794496b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost This Month' = ```
+			
+			CALCULATE(
+			    [Total Cost], 
+			    MONTH('Date'[Date]) = MONTH(TODAY()) && YEAR('Date'[Date]) = YEAR(TODAY())
+			)
+			
+			```
+		lineageTag: 17f84688-1e0a-49c4-94aa-c61e30e25032
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue This year' = ```
+			
+			CALCULATE(
+			    [Total Turnover], 
+			    YEAR('Date'[Date]) = YEAR(TODAY())
+			)
+			```
+		formatString: #,0
+		lineageTag: 42412b52-623d-45eb-ac12-0f9d27bb8b66
+
+	measure 'Cost This Year' = ```
+			
+			CALCULATE(
+			    [Total Cost], 
+			    YEAR('Date'[Date]) = YEAR(TODAY())
+			)
+			```
+		formatString: 0
+		lineageTag: 15bd6e30-b23c-49c9-b67a-064123ea4d9d
+
+	measure CurrentMonth
+		lineageTag: 0c1c1c1b-a0c9-4c56-becb-ecee0ff29855
+
+	measure 'Proft Margin MOM' = ```
+			CALCULATE(
+			    [Actual Profit Margin], 
+			    DATEADD('Date'[Date], -1, MONTH)
+			)
+			```
+		lineageTag: c96711ac-aa09-4dd6-9083-3899572102d8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit Margin YTD' = TOTALYTD([Actual Profit Margin], 'Date'[Date])
+		lineageTag: 61212de3-62db-4dd7-8c39-72f3acde5105
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit Margin Last Year' = ```
+			
+			CALCULATE(
+			    [Actual Profit Margin], 
+			    SAMEPERIODLASTYEAR('Date'[Date])
+			)
+			
+			```
+		lineageTag: 44ec1cdf-603f-473b-8d57-aea27e897c7f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Profit' = ```
+			
+			SWITCH(
+			    SELECTEDVALUE('Time_Mode'[Time Mode]),
+			    "Last Month", [Proft Margin MOM],"Last Year", [Profit Margin Last Year],"Year to Date", [Profit Margin YTD],
+			    [Profit Margin YTD]  -- Default if nothing selected
+			)
+			
+			```
+		lineageTag: 9d1fc61c-9efb-498d-a5c2-98042a753645
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Revenue Growth vs Current %' = ```
+			
+			VAR PreviousRevenue = 
+			    SWITCH(
+			        SELECTEDVALUE('Time_Mode'[Time Mode]),
+			        "Last Month", [Revenue MOM],
+			        "Last Year", [Revenue Last Year]
+			    )
+			
+			VAR CurrentRevenue = 
+			    SWITCH(
+			        SELECTEDVALUE('Time_Mode'[Time Mode]),
+			        "Last Month", [Revenue This Month],
+			        "Last Year", [Revenue This Year]
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PreviousRevenue) && PreviousRevenue <> 0,
+			    DIVIDE(CurrentRevenue - PreviousRevenue, PreviousRevenue),
+			    BLANK()
+			)
+			```
+		lineageTag: 951c0464-5013-4cf2-9b4b-c87f18bf354d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Cost Growth vs Current %' = ```
+			
+			VAR PreviousRevenue = 
+			    SWITCH(
+			        SELECTEDVALUE('Time_Mode'[Time Mode]),
+			        "Last Month", [Cost MOM],
+			        "Last Year", [Cost Last Year]
+			    )
+			
+			VAR CurrentRevenue = 
+			    SWITCH(
+			        SELECTEDVALUE('Time_Mode'[Time Mode]),
+			        "Last Month", [Cost This Month],
+			        "Last Year", [Cost This Year]
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PreviousRevenue) && PreviousRevenue <> 0,
+			    DIVIDE(CurrentRevenue - PreviousRevenue, PreviousRevenue),
+			    BLANK()
+			)
+			```
+		lineageTag: 9d0f741c-d400-43b7-a328-c1fb67476bac
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit This Month' = ```
+			
+			CALCULATE(
+			    [Actual Profit Margin], 
+			    MONTH('Date'[Date]) = MONTH(TODAY()) && YEAR('Date'[Date]) = YEAR(TODAY())
+			)
+			
+			```
+		lineageTag: 95aff9d7-b7b5-461f-8f7f-aea0e1a3b9c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit This year' = ```
+			
+			CALCULATE(
+			    [Actual Profit Margin], 
+			    YEAR('Date'[Date]) = YEAR(TODAY())
+			)
+			```
+		lineageTag: 5a443440-5abf-49af-b8ba-693e0504a01d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Profit Growth vs Current %' = ```
+			
+			VAR PreviousRevenue = 
+			    SWITCH(
+			        SELECTEDVALUE('Time_Mode'[Time Mode]),
+			        "Last Month", [Proft Margin MOM],
+			        "Last Year", [Profit Margin Last Year]
+			    )
+			
+			VAR CurrentRevenue = 
+			    SWITCH(
+			        SELECTEDVALUE('Time_Mode'[Time Mode]),
+			        "Last Month", [Profit This Month],
+			        "Last Year", [Profit This year]
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PreviousRevenue) && PreviousRevenue <> 0,
+			    DIVIDE(CurrentRevenue - PreviousRevenue, PreviousRevenue),
+			    BLANK()
+			)
+			```
+		lineageTag: 79356b84-50ef-4efc-974a-ee012b0bcb8e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure EmployeeDisplay = ```
+			
+			IF(
+			    [Actual Amount] + [Signed Amount] > 0,
+			    SELECTEDVALUE('Ressources'[Nom]),
+			    BLANK()
+			)
+			
+			```
+		lineageTag: fd9c7590-477d-4eb9-b68c-09639b769846
+
+	measure 'Signed Amount Filtered' =
+			
+			VAR SelectedProject = SELECTEDVALUE('Projets'[référence interne])
+			RETURN
+			CALCULATE(
+			    SUMX(
+			        'Projet signé',
+			        'Projet signé'[numberOfDaysInvoicedOrQuantity] * RELATED('Ressources'[TJM-MAD])
+			    ),
+			    'Projet signé'[ProjectID] = SelectedProject
+			)
+		lineageTag: 15fda665-e41d-41f5-9078-163701675871
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual Amount Filtered' = ```
+			
+			VAR SelectedProject = SELECTEDVALUE('Projets'[référence interne])
+			RETURN
+			CALCULATE(
+			    SUMX(
+			        'Temps',
+			        'Temps'[Durée] * RELATED('Ressources'[TJM-MAD])
+			    ),
+			    'Temps'[ProjetID] = SelectedProject
+			)
+			
+			```
+		lineageTag: eaaa6cf6-2687-4925-a014-75db4a205afb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Workload Gap (Ecart JH) Filtered' = ```
+			
+			VAR SelectedResources = VALUES('Ressources'[Référence interne])
+			VAR SelectedProjects = VALUES('Projets'[Référence interne])
+			
+			VAR SignedJH =
+			    CALCULATE(
+			        SUM('Projet signé'[numberOfDaysInvoicedOrQuantity]),
+			        TREATAS(SelectedResources, 'Projet signé'[ressourceID]),
+			        TREATAS(SelectedProjects, 'Projet signé'[ProjectID])
+			    )
+			
+			VAR ActualJH =
+			    CALCULATE(
+			        SUM('Temps'[Durée]),
+			        TREATAS(SelectedResources, 'Temps'[Ressource - Référence interne]),
+			        TREATAS(SelectedProjects, 'Temps'[ProjetID])
+			    )
+			
+			RETURN
+			SignedJH - ActualJH
+			
+			```
+		lineageTag: e936de0e-61ea-4fe1-96c0-a5aa70529fb9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure EmployeeCount1 = ```
+			
+			IF(
+			    ISBLANK(DISTINCTCOUNT('Temps'[Ressource - Référence interne])),
+			    0,
+			    DISTINCTCOUNT('Temps'[Ressource - Référence interne])
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 7235a858-9faf-493b-84f5-2ef412ea47b7
+
+	measure 'Total Actual Amount for Project' = ```
+			
+			VAR SelectedProject = SELECTEDVALUE('Projets'[référence interne])
+			RETURN
+			CALCULATE(
+			    SUMX(
+			        'Temps',
+			        'Temps'[Durée] * RELATED('Ressources'[TJM-MAD])
+			    ),
+			    'Temps'[ProjetID] = SelectedProject,
+			    REMOVEFILTERS('Temps'[Ressource - Référence interne])
+			)
+			
+			```
+		lineageTag: 437889ef-21d2-4db8-b540-c4ab8212834d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Employee Contribution (Actual Amount)' = ```
+			
+			VAR SelectedProject = SELECTEDVALUE('Projets'[référence interne])
+			VAR ActualByEmployee =
+			    CALCULATE(
+			        SUMX(
+			            'Temps',
+			            'Temps'[Durée] * RELATED('Ressources'[TJM-MAD])
+			        ),
+			        'Temps'[ProjetID] = SelectedProject
+			    )
+			VAR TotalActualAllEmployees =
+			    CALCULATE(
+			        SUMX(
+			            'Temps',
+			            'Temps'[Durée] * RELATED('Ressources'[TJM-MAD])
+			        ),
+			        'Temps'[ProjetID] = SelectedProject,
+			        ALL('Temps'[Ressource - Référence interne])
+			    )
+			RETURN
+			DIVIDE(ActualByEmployee, TotalActualAllEmployees, 0)
+			
+			
+			```
+		lineageTag: 0aca8d45-6bb4-4fd1-866b-25bdbff89d8c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Revenue This' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Time_Mode'[Time Mode]),
+			    "Last Month", [Revenue This Month]  -- Default if nothing selected
+			)
+		lineageTag: 7d99d71b-e0d6-4f36-bf71-7a24407c83ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Measure 2'
+		lineageTag: 52f82a75-77a1-4734-884a-e9cace1ea9a8
+
+	measure '% of Total Cost' =
+			
+			DIVIDE(
+			    COALESCE(
+			        SUMX(
+			            FILTER('Projet Prestation', VALUE('Projet Prestation'[state]) <> 0),
+			            'Projet Prestation'[costsExcludingTax_MAD]
+			        ),
+			        0
+			    ),
+			    COALESCE(
+			        CALCULATE(
+			            SUM('Projet Prestation'[costsExcludingTax_MAD]),
+			            FILTER(ALL('Projet Prestation'), VALUE('Projet Prestation'[state]) <> 0)
+			        ),
+			        0
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 65121e2e-36ec-4b46-961b-63ad11e99bfd
+
+	measure 'Test Trigger' = IF(1 = 1, "Trigger Alert", "No Alert")
+		lineageTag: c2894e8d-d632-4e1a-a44c-2c8595b97523
+
+	measure 'Selected Pôle' = SELECTEDVALUE('Projets'[Pôle], "No Pôle")
+		lineageTag: 1be856a6-7d68-4ada-b19e-45ea8928a31b
+
+	measure 'Selected Projet' = SELECTEDVALUE('Projets'[Besoin - Titre], "No Project Selected")
+		lineageTag: 36e6503e-be36-4b43-a8f7-07e4d5346015
+
+	measure 'Selected Client' = SELECTEDVALUE('Projets'[Société - Nom], "No Client Selected")
+		lineageTag: 4125e881-3996-41d7-9b8e-563c32b3cfb3
+
+	measure 'Number of Late Projects' = ```
+			
+			COALESCE(
+			    CALCULATE(
+			        COUNTROWS('Projets'),
+			        'Projets'[État] = "En cours",
+			        'Projets'[Fin] < TODAY()
+			    ),
+			    0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: d954871c-bab9-40a8-baee-23dcbb6a365a
+
+	measure 'MOM Growth %' =
+			
+			VAR RevenueThisMonth = [Revenue This Month]
+			VAR RevenueLastMonth = [Revenue MOM]
+			RETURN
+			IF(
+			    NOT ISBLANK(RevenueLastMonth) && RevenueLastMonth <> 0,
+			    DIVIDE(RevenueThisMonth - RevenueLastMonth, RevenueLastMonth),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9f60161f-d3a1-47c8-b904-4773b20b47d1
+
+	measure 'Cost Growth %' =
+			
+			VAR costThisMonth = [Cost This Month]
+			VAR costLastMonth = [Cost MOM]
+			RETURN
+			IF(
+			    NOT ISBLANK(costLastMonth) && costLastMonth <> 0,
+			    DIVIDE(costThisMonth - costLastMonth, costLastMonth),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 085d38e3-8e56-4802-bee3-dc5371e2f863
+
+	measure 'YOY Growth %' =
+			
+			VAR RevenueThisYear = [Revenue This Year]
+			VAR RevenueLastYear = [Revenue YOY]
+			RETURN
+			IF(
+			    NOT ISBLANK(RevenueLastYear) && RevenueLastYear <> 0,
+			    DIVIDE(RevenueThisYear - RevenueLastYear, RevenueLastYear),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1ec92908-d88b-4d73-b7f3-c15f3f9dd14c
+
+	measure 'MOM cost Growth %' =
+			
+			VAR RevenueThisMonth = [Cost This Month]
+			VAR RevenueLastMonth = [Cost MOM]
+			RETURN
+			IF(
+			    NOT ISBLANK(RevenueLastMonth) && RevenueLastMonth <> 0,
+			    DIVIDE(RevenueThisMonth - RevenueLastMonth, RevenueLastMonth),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b48fb7ba-39ab-414e-83d1-9c3676c2c485
+
+	measure 'YOY cost Growth %' =
+			
+			VAR RevenueThisYear = [Cost This Year]
+			VAR RevenueLastYear = [Cost Last Year]
+			RETURN
+			IF(
+			    NOT ISBLANK(RevenueLastYear) && RevenueLastYear <> 0,
+			    DIVIDE(RevenueThisYear - RevenueLastYear, RevenueLastYear),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 54adb62b-fd5c-4826-90f5-d047b2b9705b
+
+	column Column
+		formatString: 0
+		lineageTag: 47832074-d4db-4ad8-85cf-c4af7ada7741
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Blank = BLANK()
+		formatString: 0
+		lineageTag: dcf7bd8d-97a0-4b35-ad83-605fe074fbdb
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Financial Metrics' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = ce77b20fe3984ec983a0ad31d5f0b33f
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

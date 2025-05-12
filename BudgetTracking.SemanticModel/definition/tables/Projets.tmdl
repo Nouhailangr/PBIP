@@ -1,0 +1,417 @@
+table Projets
+	lineageTag: 76667a86-2448-4bcd-a038-73a5e53073c1
+
+	column 'Référence interne'
+		dataType: int64
+		formatString: 0
+		lineageTag: a72284c1-054e-4c66-8623-eaa8b3fd37fd
+		summarizeBy: none
+		sourceColumn: Référence interne
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Début
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1e42d177-fc0e-4b8f-96f0-f0465b0302c3
+		summarizeBy: none
+		sourceColumn: Début
+
+		variation Variation
+			isDefault
+			relationship: aa035cf7-b534-4909-955c-c5920a6e92eb
+			defaultHierarchy: LocalDateTable_9b9d29f0-1baf-43b5-b415-8e81f98a1c3c.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fin
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cdc74703-2354-47b9-9d07-fc8738a3657a
+		summarizeBy: none
+		sourceColumn: Fin
+
+		variation Variation
+			isDefault
+			relationship: 738cb9b2-5f7e-48c3-91c2-90edf14a4f41
+			defaultHierarchy: LocalDateTable_f31b20e9-b615-4d9c-8a29-21560043456b.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Référence
+		dataType: string
+		lineageTag: 18aadb20-0c8e-45ca-b036-fb42a67cf69a
+		summarizeBy: none
+		sourceColumn: Référence
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 4c2c61df-188d-4024-a690-1cf4591b44a1
+		summarizeBy: none
+		sourceColumn: Type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column État
+		dataType: string
+		lineageTag: d909a929-26bf-4e2d-b511-1ec809252971
+		summarizeBy: none
+		sourceColumn: État
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Besoin - Titre'
+		dataType: string
+		lineageTag: 83fe0e6a-2839-4dd4-ba99-b60b45575b2e
+		summarizeBy: none
+		sourceColumn: Besoin - Titre
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact - Nom'
+		dataType: string
+		lineageTag: ae5b7cf7-0951-4f8a-b423-90301b87d4e7
+		summarizeBy: none
+		sourceColumn: Contact - Nom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact - Prénom'
+		dataType: string
+		lineageTag: 28c8c7a9-c2de-49bf-bf07-553a533b0be8
+		summarizeBy: none
+		sourceColumn: Contact - Prénom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Société - Nom'
+		dataType: string
+		lineageTag: e7cc1e8e-df25-44c6-8a09-d5d1a3fa0f23
+		summarizeBy: none
+		sourceColumn: Société - Nom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Devise
+		dataType: string
+		lineageTag: 22261bf6-b217-415b-aced-68b4e87ec63b
+		summarizeBy: none
+		sourceColumn: Devise
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CA HT'
+		dataType: double
+		lineageTag: 7b602998-dfaa-48cb-847f-5c913a187ed4
+		summarizeBy: sum
+		sourceColumn: CA HT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Marge HT'
+		dataType: double
+		lineageTag: 097b4f39-90e8-4a5e-83d3-5df33231f490
+		summarizeBy: sum
+		sourceColumn: Marge HT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Rentabilité
+		dataType: double
+		lineageTag: 941cfa76-bb2c-4d53-b07b-b830448fd3f4
+		summarizeBy: sum
+		sourceColumn: Rentabilité
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Code postal'
+		dataType: int64
+		formatString: 0
+		lineageTag: cda89cb3-5d0c-4ae8-8616-c889c493fe2c
+		summarizeBy: sum
+		sourceColumn: Code postal
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ville
+		dataType: string
+		lineageTag: b103e03d-46b4-4201-af8c-f87a0b713f76
+		summarizeBy: none
+		sourceColumn: Ville
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Responsable manager'
+		dataType: string
+		lineageTag: 1b1c72c8-81ca-4208-94fc-826e081b6519
+		summarizeBy: none
+		sourceColumn: Responsable manager
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pôle
+		dataType: string
+		lineageTag: 59414c26-52d4-46f8-9891-a5153caabcd4
+		summarizeBy: none
+		sourceColumn: Pôle
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Agence
+		dataType: string
+		lineageTag: b901b96f-cabc-473b-a66e-d606f330ff21
+		summarizeBy: none
+		sourceColumn: Agence
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date de création'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e2196aa6-a843-4e6a-83aa-47581a7d8655
+		summarizeBy: none
+		sourceColumn: Date de création
+
+		variation Variation
+			isDefault
+			relationship: 4ee2a327-fa83-4d1f-859a-d5078c18879f
+			defaultHierarchy: LocalDateTable_57d1ecef-2ded-490d-ae1a-6deb522bd0ea.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date de mise à jour'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 05ad831b-fc60-48f8-9a68-59943cd86803
+		summarizeBy: none
+		sourceColumn: Date de mise à jour
+
+		variation Variation
+			isDefault
+			relationship: 50fe98fd-ea30-421f-ba61-17ae2bb3c4ca
+			defaultHierarchy: LocalDateTable_f26db8ed-bfed-42fe-8b7c-22c90d11c856.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Commentaires
+		dataType: string
+		lineageTag: e699011e-77ae-40f1-9bef-4b821dfcb6d3
+		summarizeBy: none
+		sourceColumn: Commentaires
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Besoin - Référence interne'
+		dataType: string
+		lineageTag: 3a6c1d97-49cb-44fc-8feb-4a1757d6cb96
+		summarizeBy: none
+		sourceColumn: Besoin - Référence interne
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Adresse
+		dataType: string
+		lineageTag: cfb4785e-c32e-476e-85e8-3e3d35637ff5
+		summarizeBy: none
+		sourceColumn: Adresse
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pays
+		dataType: string
+		lineageTag: 63d0b873-546e-4996-b3ea-44eaba4d7c87
+		summarizeBy: none
+		sourceColumn: Pays
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Société - Secteur'
+		dataType: string
+		lineageTag: 3280a282-2085-45e3-b002-fd89ddf5c654
+		summarizeBy: none
+		sourceColumn: Société - Secteur
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Besoin - Domaines d''application'
+		dataType: string
+		lineageTag: b43a607b-e81f-410b-ab81-0eb94a669580
+		summarizeBy: none
+		sourceColumn: Besoin - Domaines d'application
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Besoin - Outils'
+		dataType: string
+		lineageTag: 7c48fc5a-2c0f-4e13-8e7a-9e5d695da0d4
+		summarizeBy: none
+		sourceColumn: Besoin - Outils
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Taux de change'
+		dataType: double
+		lineageTag: 9f89664a-d4d5-4a2a-8855-a1319b43804a
+		summarizeBy: sum
+		sourceColumn: Taux de change
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Taux de change agence'
+		dataType: double
+		lineageTag: 4dbc9ec5-6aba-4019-801c-60115d77e27e
+		summarizeBy: sum
+		sourceColumn: Taux de change agence
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Etat - motif'
+		dataType: string
+		lineageTag: bdd8d160-b4c0-4f5a-baff-5399df5b35ec
+		summarizeBy: none
+		sourceColumn: Etat - motif
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Motif - Commentaire'
+		dataType: string
+		lineageTag: 3e585d5a-4226-453b-822a-27c44f6596af
+		summarizeBy: none
+		sourceColumn: Motif - Commentaire
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CA_HT_MAD =
+			
+			IF(
+			    'Projets'[Devise] = "Euro",
+			    'Projets'[CA HT]* 10.6,
+			    'Projets'[CA HT]
+			)
+		lineageTag: 2ed438e3-e773-4e30-a9c0-fe421687a16a
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Marge_HT_MAD = ```
+			
+			IF(
+			    'Projets'[Devise] = "Euro",
+			    'Projets'[Marge HT]* 10.6,
+			    'Projets'[Marge HT]
+			)
+			
+			```
+		lineageTag: f6bd88c9-a298-495c-be47-11b9cad3743d
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Projets = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Nouhaila\OneDrive - Ministere de l'education nationale, du préscolaire et des sports\BCP TECH 🎠\DATA_BOONMANAGER_BI_ANONYMISÉ_COMPLET.xlsx"), null, true),
+				    Projets_Sheet = Source{[Item="Projets",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Projets_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Référence interne", Int64.Type}, {"Début", type datetime}, {"Fin", type datetime}, {"Référence", type text}, {"Type", type text}, {"État", type text}, {"Besoin - Titre", type text}, {"Contact - Nom", type text}, {"Contact - Prénom", type text}, {"Société - Nom", type text}, {"Devise", type text}, {"CA HT", type number}, {"Marge HT", type number}, {"Rentabilité", type number}, {"Code postal", Int64.Type}, {"Ville", type text}, {"Responsable manager", type text}, {"Pôle", type text}, {"Agence", type text}, {"Date de création", type datetime}, {"Date de mise à jour", type datetime}, {"Commentaires", type text}, {"Besoin - Référence interne", type text}, {"Adresse", type text}, {"Pays", type text}, {"Société - Secteur", type text}, {"Besoin - Domaines d'application", type any}, {"Besoin - Outils", type any}, {"Taux de change", type number}, {"Taux de change agence", type number}, {"Etat - motif", type any}, {"Motif - Commentaire", type any}}),
+				
+				// Replace nulls with "Unknown" in specific categorical columns
+				    ReplaceNulls = Table.ReplaceValue(
+				        #"Changed Type", // Table you're transforming
+				        null, // Value to replace
+				        "Unknown", // Replacement value
+				        Replacer.ReplaceValue, // Method for replacing
+				        {"Ville", "Pays"} // List of columns to replace nulls
+				    )
+				in
+				    ReplaceNulls
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

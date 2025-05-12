@@ -1,0 +1,197 @@
+table 'Projet Prestation'
+	lineageTag: dc4106dc-2206-4865-9fb2-77fd4df4d712
+
+	column projetID
+		dataType: int64
+		formatString: 0
+		lineageTag: a9b77303-d50d-4d99-b2dc-0f3dac867173
+		summarizeBy: none
+		sourceColumn: projetID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: int64
+		formatString: 0
+		lineageTag: b01e73ce-baee-44cd-925f-3c4c187f43ea
+		summarizeBy: sum
+		sourceColumn: currency
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column exchangeRate
+		dataType: double
+		lineageTag: 5643e11f-efff-4658-aa00-f1aa4b434090
+		summarizeBy: sum
+		sourceColumn: exchangeRate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column currencyAgency
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e6639a6-2732-48d0-ade0-25a8c45897a8
+		summarizeBy: sum
+		sourceColumn: currencyAgency
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column exchangeRateAgency
+		dataType: double
+		lineageTag: 7fc27f61-c89c-493d-a4be-f8336e35d4f0
+		summarizeBy: sum
+		sourceColumn: exchangeRateAgency
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: de926fd1-2f5e-44f5-89b2-b60109c182ef
+		summarizeBy: sum
+		sourceColumn: id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column turnoverExcludingTax
+		dataType: double
+		lineageTag: 7119c813-2d9f-409a-b630-3c5d8d85d365
+		summarizeBy: sum
+		sourceColumn: turnoverExcludingTax
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column costsExcludingTax
+		dataType: double
+		lineageTag: d17b433d-00a6-4172-b89b-94a0e874e0cb
+		summarizeBy: sum
+		sourceColumn: costsExcludingTax
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column title
+		dataType: string
+		lineageTag: 885500bb-97df-4f29-be0e-42ca20f90bf8
+		summarizeBy: none
+		sourceColumn: title
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 46be4582-2e89-435d-ac61-0c28ccbae708
+		summarizeBy: none
+		sourceColumn: date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: int64
+		formatString: 0
+		lineageTag: c3684ea7-a2e5-4b7e-9b31-40d4f6e595f3
+		summarizeBy: sum
+		sourceColumn: state
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column typeOf
+		dataType: int64
+		formatString: 0
+		lineageTag: 327a5fb2-7936-461d-b6a1-c69b2650bcfd
+		summarizeBy: sum
+		sourceColumn: typeOf
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column purchase
+		dataType: string
+		lineageTag: 2248e5f1-a240-4a1d-8280-cd8028258332
+		summarizeBy: none
+		sourceColumn: purchase
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column turnoverExcludingTax_MAD = ```
+			
+			IF(
+			    'Projet Prestation'[currency] = 1, 
+			    'Projet Prestation'[turnoverExcludingTax] * 10.6,
+			    'Projet Prestation'[turnoverExcludingTax]
+			)
+			```
+		lineageTag: 4c31604b-a63c-446e-a1c1-ab2b65d80cd4
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column costsExcludingTax_MAD = ```
+			
+			IF(
+			    'Projet Prestation'[currency] = 1, 
+			    'Projet Prestation'[costsExcludingTax] * 10.6,
+			    'Projet Prestation'[costsExcludingTax]
+			)
+			```
+		lineageTag: e7e5eb65-ae2b-41ee-949a-ab28df1839d0
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Projet Prestation' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Nouhaila\OneDrive - Ministere de l'education nationale, du préscolaire et des sports\BCP TECH 🎠\DATA_BOONMANAGER_BI_ANONYMISÉ_COMPLET.xlsx"), null, true),
+				    #"Projet Prestation_Sheet" = Source{[Item="Projet Prestation",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Projet Prestation_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"projetID", Int64.Type}, {"currency", Int64.Type}, {"exchangeRate", type number}, {"currencyAgency", Int64.Type}, {"exchangeRateAgency", type number}, {"id", Int64.Type}, {"turnoverExcludingTax", type number}, {"costsExcludingTax", type number}, {"title", type text}, {"date", type datetime}, {"state", Int64.Type}, {"typeOf", Int64.Type}, {"purchase", type any}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

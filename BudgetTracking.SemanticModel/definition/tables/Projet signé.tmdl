@@ -1,0 +1,290 @@
+table 'Projet signé'
+	lineageTag: ed4459f8-9563-4475-9282-bbe6d166cef3
+
+	column Type
+		dataType: string
+		lineageTag: e788e4c4-5387-4a2f-a36a-60e753f318e0
+		summarizeBy: none
+		sourceColumn: Type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column projectID
+		dataType: int64
+		formatString: 0
+		lineageTag: 059ff4f7-aa25-46e2-af15-13bec2318e53
+		summarizeBy: none
+		sourceColumn: projectID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column deliveryID
+		dataType: int64
+		formatString: 0
+		lineageTag: 37644882-8f06-4cc4-a7a3-06cb406a4a31
+		summarizeBy: count
+		sourceColumn: deliveryID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ressourceID
+		dataType: int64
+		formatString: 0
+		lineageTag: cb01c713-dd36-40ce-b3a7-b49822811e78
+		summarizeBy: none
+		sourceColumn: ressourceID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: cf2114a4-a128-4264-936d-665997f02c7a
+		summarizeBy: none
+		sourceColumn: title
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column startDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 776aa66c-d661-4d08-9696-4800e6ae0178
+		summarizeBy: none
+		sourceColumn: startDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column endDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9a8e3838-6420-4470-868b-f3c3559ba6c1
+		summarizeBy: none
+		sourceColumn: endDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column numberOfDaysInvoicedOrQuantity
+		dataType: double
+		lineageTag: cd2472bf-ede2-48d1-a2cf-33a4d58d6cc7
+		summarizeBy: sum
+		sourceColumn: numberOfDaysInvoicedOrQuantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column numberOfDaysFree
+		dataType: int64
+		formatString: 0
+		lineageTag: 3faa6fb0-cb07-4d6c-919b-4ecf6b5b968c
+		summarizeBy: sum
+		sourceColumn: numberOfDaysFree
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column regularTimesSimulated
+		dataType: int64
+		formatString: 0
+		lineageTag: b5ae4cb7-93c1-4949-824a-2047239d7213
+		summarizeBy: sum
+		sourceColumn: regularTimesSimulated
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column regularTimesProduction
+		dataType: double
+		lineageTag: ff844bc8-46ed-4b5b-98ff-2a4b19070e04
+		summarizeBy: sum
+		sourceColumn: regularTimesProduction
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column regularTimesProductionInWorkUnits
+		dataType: double
+		lineageTag: 3de707c4-a7a6-4ac9-be4a-3561d294b28e
+		summarizeBy: sum
+		sourceColumn: regularTimesProductionInWorkUnits
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column exceptionalTimesProduction
+		dataType: int64
+		formatString: 0
+		lineageTag: 44f946ed-1dd7-4292-ae41-02e15958c0a9
+		summarizeBy: sum
+		sourceColumn: exceptionalTimesProduction
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column exceptionalCalendarsProduction
+		dataType: int64
+		formatString: 0
+		lineageTag: 5acd5f00-ece7-4a62-9be3-d4bcbcc41a92
+		summarizeBy: sum
+		sourceColumn: exceptionalCalendarsProduction
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column expensesSimulated
+		dataType: int64
+		formatString: 0
+		lineageTag: 7eebcc39-c6aa-4634-8972-3d09af766a1b
+		summarizeBy: sum
+		sourceColumn: expensesSimulated
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column expensesProduction
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a12bdf3-de83-433b-b8df-78b89a403cae
+		summarizeBy: sum
+		sourceColumn: expensesProduction
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column turnoverProductionExcludingTax
+		dataType: int64
+		formatString: 0
+		lineageTag: eb269eed-b915-4554-8e92-87168c4bafa0
+		summarizeBy: sum
+		sourceColumn: turnoverProductionExcludingTax
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column costsProductionExcludingTax
+		dataType: double
+		lineageTag: 15b1ca55-76e1-4f8e-9380-61aed1b9e2dc
+		summarizeBy: sum
+		sourceColumn: costsProductionExcludingTax
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column canShowExpensesSimulated
+		dataType: int64
+		formatString: 0
+		lineageTag: 6b1a236e-34ef-4502-8f10-7dff5a03046b
+		summarizeBy: sum
+		sourceColumn: canShowExpensesSimulated
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column canShowExpensesProduction
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b5a7fce-b5cb-4aa1-b89e-7944b3ea3c25
+		summarizeBy: sum
+		sourceColumn: canShowExpensesProduction
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column canShowTurnoverProductionExcludingTax
+		dataType: int64
+		formatString: 0
+		lineageTag: eff2d4f1-3433-4a4f-888d-46eed8ead233
+		summarizeBy: sum
+		sourceColumn: canShowTurnoverProductionExcludingTax
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column canShowCostsProductionExcludingTax
+		dataType: int64
+		formatString: 0
+		lineageTag: 61a7f50b-dbc4-418e-a12b-071832086fb7
+		summarizeBy: sum
+		sourceColumn: canShowCostsProductionExcludingTax
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column canReadDelivery
+		dataType: int64
+		formatString: 0
+		lineageTag: 582c9d40-15d6-422f-855c-611f2f3afd07
+		summarizeBy: sum
+		sourceColumn: canReadDelivery
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column costsProductionExcludingTax_MAD = ```
+			
+			IF(
+			    RELATED('Projets'[Devise]) = "Euro", 
+			    'Projet signé'[costsProductionExcludingTax] * 10.6,
+			    'Projet signé'[costsProductionExcludingTax]
+			)
+			```
+		lineageTag: 512a254e-8684-478d-9d97-788bb8317858
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Projet signé' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Nouhaila\OneDrive - Ministere de l'education nationale, du préscolaire et des sports\BCP TECH 🎠\DATA_BOONMANAGER_BI_ANONYMISÉ_COMPLET.xlsx"), null, true),
+				    #"Projet signé_Sheet" = Source{[Item="Projet signé",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Projet signé_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Type", type text}, {"projectID", Int64.Type}, {"deliveryID", Int64.Type}, {"ressourceID", Int64.Type}, {"title", type text}, {"startDate", type datetime}, {"endDate", type datetime}, {"numberOfDaysInvoicedOrQuantity", type number}, {"numberOfDaysFree", Int64.Type}, {"regularTimesSimulated", Int64.Type}, {"regularTimesProduction", type number}, {"regularTimesProductionInWorkUnits", type number}, {"exceptionalTimesProduction", Int64.Type}, {"exceptionalCalendarsProduction", Int64.Type}, {"expensesSimulated", Int64.Type}, {"expensesProduction", Int64.Type}, {"turnoverProductionExcludingTax", Int64.Type}, {"costsProductionExcludingTax", type number}, {"canShowExpensesSimulated", Int64.Type}, {"canShowExpensesProduction", Int64.Type}, {"canShowTurnoverProductionExcludingTax", Int64.Type}, {"canShowCostsProductionExcludingTax", Int64.Type}, {"canReadDelivery", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

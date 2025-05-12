@@ -1,0 +1,230 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 414.28571428571428,
+        "y": 1.7857142857142492
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1372.4593446223348,
+            "y": 0
+          },
+          "nodeIndex": "Fournisseurs",
+          "nodeLineageTag": "9fbf2c6b-0ff7-4a0a-ad85-23168bd5bad3",
+          "size": {
+            "height": 157.97014925373136,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 882.49678654249885,
+            "y": 318.6218414629696
+          },
+          "nodeIndex": "Projet Prestation",
+          "nodeLineageTag": "dc4106dc-2206-4865-9fb2-77fd4df4d712",
+          "size": {
+            "height": 355.43995038930609,
+            "width": 283.12055709828462
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 1345.6485722566431,
+            "y": 313.76694288501284
+          },
+          "nodeIndex": "Projet signé",
+          "nodeLineageTag": "ed4459f8-9563-4475-9282-bbe6d166cef3",
+          "size": {
+            "height": 360.05994625508174,
+            "width": 284.19997214057025
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 901.91802784824984,
+            "y": 0
+          },
+          "nodeIndex": "Projets",
+          "nodeLineageTag": "76667a86-2448-4bcd-a038-73a5e53073c1",
+          "size": {
+            "height": 161.43712563177206,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 927.0260910130911,
+            "y": 797.31698021766113
+          },
+          "nodeIndex": "Ressources",
+          "nodeLineageTag": "26770af0-2f26-4073-96c4-231fe13e38f3",
+          "size": {
+            "height": 164.2217322400607,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 401.25030511870506,
+            "y": 313.38042200886895
+          },
+          "nodeIndex": "Temps",
+          "nodeLineageTag": "6527dde4-3490-47ff-bfab-e62aef184b09",
+          "size": {
+            "height": 355.4399503893062,
+            "width": 252.09704735199966
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 414.28571428571428,
+            "y": 1.7857142857142492
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "4129647e-1ea7-464d-a2af-d2fd0c05a3fe",
+          "size": {
+            "height": 155.55555555555557,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 2149.2331599134286,
+            "y": 335.14762513079688
+          },
+          "nodeIndex": "Financial Metrics",
+          "nodeLineageTag": "705e6957-7497-483e-9549-78e6cdf56bde",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 2149.1823271247013,
+            "y": 537.66323621305662
+          },
+          "nodeIndex": "Resource Allocation Metrics",
+          "nodeLineageTag": "4cab96d4-8caa-4c8d-a254-6d6a13c44455",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 2150.0268107070797,
+            "y": 739.51270449587628
+          },
+          "nodeIndex": "Project Performance Metrics",
+          "nodeLineageTag": "61d034ae-eeb7-4736-92ab-d7352600d8c2",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 2146.614561688536,
+            "y": 182.34126984126982
+          },
+          "nodeIndex": "Parameter",
+          "nodeLineageTag": "25813842-978d-453b-b9aa-8b40695f4c41",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 2148.2018632758377,
+            "y": 27.182539682539677
+          },
+          "nodeIndex": "Parameter 2",
+          "nodeLineageTag": "91330270-5d55-4e2e-9a06-8b80a8ea10b8",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1370.0264988972244,
+            "y": 801.45491391779944
+          },
+          "nodeIndex": "Unité d‘oeuvre",
+          "nodeLineageTag": "1f9b1b6d-13e6-4cee-a8b5-2dce674873c3",
+          "size": {
+            "height": 166.28571428571433,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 414.11240847161156,
+            "y": 781.73576303655489
+          },
+          "nodeIndex": "Projet Détail",
+          "nodeLineageTag": "ecf14949-7263-4cac-8bb3-0245ffe06860",
+          "size": {
+            "height": 182.82437872333753,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 2149.4431722550412,
+            "y": 28.333333333333332
+          },
+          "nodeIndex": "Time_Mode",
+          "nodeLineageTag": "18a8ba47-615f-4712-8c9b-1774dadb1e92",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1714.4431722550412,
+            "y": 393.2036474350902
+          },
+          "nodeIndex": "User Access",
+          "nodeLineageTag": "01e9b19b-9c62-47a5-be2a-130df147743a",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 16
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 60,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

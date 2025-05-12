@@ -1,0 +1,46 @@
+table 'Parameter 2'
+	lineageTag: 91330270-5d55-4e2e-9a06-8b80a8ea10b8
+
+	column Parameter
+		lineageTag: a6778e01-205b-48d5-8919-886c86ad1626
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		lineageTag: adae408c-d7e8-4166-b2a1-1e23ad617989
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		formatString: 0
+		lineageTag: 0f547bf7-61cf-4d93-8995-cfa4d15c66c0
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parameter 2' = calculated
+		mode: import
+		source =
+				{
+				    ("Employee", NAMEOF('Ressources'[Nom]), 0),
+				    ("Project", NAMEOF('Projets'[Besoin - Titre]), 1)
+				}
+
+	annotation PBI_Id = 6dcd1a4fc1e74aac88e6b60da4530fd4
+

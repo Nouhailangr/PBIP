@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "BudgetTracking"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e0286c2b-6ee5-4f0b-ac8d-b65bc48f2f7b"
+  }
+}

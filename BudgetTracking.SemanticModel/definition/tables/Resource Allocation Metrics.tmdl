@@ -1,0 +1,48 @@
+table 'Resource Allocation Metrics'
+	lineageTag: 4cab96d4-8caa-4c8d-a254-6d6a13c44455
+
+	measure 'Total work hours per project' = ```
+			SUM(Temps[Durée]) 
+			```
+		formatString: 0
+		lineageTag: 2a70169d-5ff4-4148-aa74-5234841ac4b0
+
+	measure 'Cumulative Work Hours Per Employee' = SUM(Temps[DuréeCumul])
+		lineageTag: bbef7186-1b61-4ca1-bbc5-20ed6658ec8d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Budget Allocation per Employee' = SUM(Temps[MontantCumul])
+		formatString: 0
+		lineageTag: 0587da55-a8ac-424c-a078-b5c09e68ec7e
+
+	measure 'Revenue per Employee' =
+			
+			DIVIDE(
+			    [Total Turnover],[EmployeeCount2]
+			)
+		lineageTag: c1738449-0b1b-455b-8f69-21a8ce83481f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Active Projects' = CALCULATE(COUNTROWS('Projets'), 'Projets'[État] = "En cours")
+		formatString: 0
+		lineageTag: 234d8bad-e53d-45f3-aa3d-1b28d1255201
+
+	column Column
+		formatString: 0
+		lineageTag: 415cda61-1e9e-42ed-8b8f-c6b57611edc1
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Resource Allocation Metrics' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 477377b33b114486a0ebc4f0bfb2795a
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

@@ -1,0 +1,118 @@
+table Date
+	lineageTag: 4129647e-1ea7-464d-a2af-d2fd0c05a3fe
+
+	column Date
+		formatString: General Date
+		lineageTag: 4649bb01-0f4b-4091-b9c3-f3087a3aa3c2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 64922721-da3e-497b-a027-be5d356a1dd5
+			defaultHierarchy: LocalDateTable_e493d1af-1d27-47c4-bf9f-1453097b40b5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		lineageTag: bb5e8c9d-4b77-48a7-bbb1-0c6484b7b192
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DayName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeek
+		formatString: 0
+		lineageTag: 441ff882-4e07-470e-809c-f8c872f56085
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [DayOfWeek]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year - Month'
+		lineageTag: a1f99b91-c465-4ef9-af41-9dbe67e6a7ae
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year - Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		formatString: General Date
+		lineageTag: 498a1ee7-5dd9-46ad-8f5a-cec36e1cde58
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+
+		variation Variation
+			isDefault
+			relationship: 72340705-3f0a-41eb-ae78-930a9ad652dc
+			defaultHierarchy: LocalDateTable_d5faac75-6bf9-4f8e-852c-24458f2c565d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		lineageTag: 9f9a30e0-7473-4597-8c39-1060e4c5f239
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month No'
+		formatString: 0
+		lineageTag: d8dc8c08-0c5b-49d8-94f7-74285326830e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month No]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		lineageTag: c7bc68fa-4cba-4c7e-b549-cc23d7508d4d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week
+		formatString: 0
+		lineageTag: 581a3d10-5f63-4e73-950f-6a1dfdacb5e6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Week]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year - Week'
+		lineageTag: 80341ba7-7f05-4180-bce9-f9a7d7443304
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year - Week]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = calculated
+		mode: import
+		source = ```
+				
+				    ADDCOLUMNS (
+				        CALENDAR (DATE(2020,01,01), DATE(2025,12,31)),
+				        "DayName", FORMAT([Date], "dddd"),
+				        "DayOfWeek", WEEKDAY([Date],1),
+				        "Year - Month", IF(MONTH ([Date])<10,YEAR([Date])&"-0"&MONTH([Date]),YEAR([Date])&"-"&MONTH([Date])),
+				        "Month",DATE(YEAR([Date]), MONTH([Date]), 1),
+				        "Month Name",FORMAT(([Date]),"MMMM"),
+				        "Month No",Month([Date]),
+				        "Year",FORMAT(([Date]),"YYYY"),
+				        "Week",WEEKNUM([Date]),
+				        "Year - Week",IF(WEEKNUM([Date])<10,YEAR([Date])&" - W0"&WEEKNUM([Date]),YEAR([Date])&" - W"&WEEKNUM([Date]))
+				)
+				```
+
+	annotation PBI_Id = a7f6e93947db4f5483cfd8e99601c43e
+

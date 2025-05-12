@@ -1,0 +1,171 @@
+table 'Projet Détail'
+	lineageTag: ecf14949-7263-4cac-8bb3-0245ffe06860
+
+	column Type
+		dataType: string
+		lineageTag: ede62790-b053-4c5f-8bd4-8d0c8cfdb6a2
+		summarizeBy: none
+		sourceColumn: Type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column projectID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7552468f-173e-43fc-8a0a-7d02bdd83bbc
+		summarizeBy: none
+		sourceColumn: projectID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference
+		dataType: string
+		lineageTag: 497b5f66-771c-4167-b64f-5e1f9742c08a
+		summarizeBy: none
+		sourceColumn: reference
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column typeOf
+		dataType: int64
+		formatString: 0
+		lineageTag: 7bd2f109-b1d2-4413-a797-53e589abb123
+		summarizeBy: sum
+		sourceColumn: typeOf
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode
+		dataType: int64
+		formatString: 0
+		lineageTag: 452baf51-a015-4d10-8c6a-905f04d217b3
+		summarizeBy: sum
+		sourceColumn: mode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column creationDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1d5d8afa-aa07-4359-852a-9be1e79bf174
+		summarizeBy: none
+		sourceColumn: creationDate
+
+		variation Variation
+			isDefault
+			relationship: 55926c1e-05b1-43be-9c0e-beb678ea33d0
+			defaultHierarchy: LocalDateTable_b01f0614-7953-47f9-8e58-b1227414741f.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column updateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d8bc8314-f796-4c8a-81a7-4a84f5d55ae9
+		summarizeBy: none
+		sourceColumn: updateDate
+
+		variation Variation
+			isDefault
+			relationship: 5e1cea84-3584-4cad-b892-f112e3b62b56
+			defaultHierarchy: LocalDateTable_04a1e302-02d1-49c3-a7e7-b0b52b3f3a3f.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column isProjectManager
+		dataType: int64
+		formatString: 0
+		lineageTag: e7506586-37ac-4f6e-8304-9efc95511abd
+		summarizeBy: sum
+		sourceColumn: isProjectManager
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column currencyAgency
+		dataType: int64
+		formatString: 0
+		lineageTag: 2bc6baa3-b840-4ac4-8b87-d07a0022ce63
+		summarizeBy: sum
+		sourceColumn: currencyAgency
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: int64
+		formatString: 0
+		lineageTag: a32c7852-acad-4a00-84a3-2b8d2dd8f634
+		summarizeBy: sum
+		sourceColumn: currency
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column exchangeRate
+		dataType: double
+		lineageTag: 0833bd32-ba79-4840-bebd-fcac49193f0e
+		summarizeBy: sum
+		sourceColumn: exchangeRate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column exchangeRateAgency
+		dataType: double
+		lineageTag: cfdf75e1-83dc-44e0-965e-01bbdba20909
+		summarizeBy: sum
+		sourceColumn: exchangeRateAgency
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column workUnitRate
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d4d4f43-cf25-4f76-ae0f-f94103b6bbc9
+		summarizeBy: sum
+		sourceColumn: workUnitRate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Projet Détail' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Nouhaila\OneDrive - Ministere de l'education nationale, du préscolaire et des sports\BCP TECH 🎠\DATA_BOONMANAGER_BI_ANONYMISÉ_COMPLET.xlsx"), null, true),
+				    #"Projet Détail_Sheet" = Source{[Item="Projet Détail",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Projet Détail_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Type", type text}, {"projectID", Int64.Type}, {"reference", type text}, {"typeOf", Int64.Type}, {"mode", Int64.Type}, {"creationDate", type datetime}, {"updateDate", type datetime}, {"isProjectManager", Int64.Type}, {"currencyAgency", Int64.Type}, {"currency", Int64.Type}, {"exchangeRate", type number}, {"exchangeRateAgency", type number}, {"workUnitRate", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,51 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Projets","Projet signé","Projet Prestation","Ressources","Temps","Fournisseurs","Unité d‘oeuvre","Projet Détail","User Access"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.142.928.0 (25.04)+de52df9f0bb74ad93a80d89c52d63fe6d07e0e1b
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Projets
+ref table DateTableTemplate_7ef75b79-5f87-41a8-a762-b9b0dbf64b2d
+ref table LocalDateTable_9b9d29f0-1baf-43b5-b415-8e81f98a1c3c
+ref table LocalDateTable_f31b20e9-b615-4d9c-8a29-21560043456b
+ref table LocalDateTable_57d1ecef-2ded-490d-ae1a-6deb522bd0ea
+ref table LocalDateTable_f26db8ed-bfed-42fe-8b7c-22c90d11c856
+ref table 'Projet signé'
+ref table 'Projet Prestation'
+ref table Ressources
+ref table LocalDateTable_93a393e0-85fb-4ecc-94e8-6b11ed0d871c
+ref table LocalDateTable_d9b0f0ed-bd45-4c83-9b4f-d4cc3b9ba102
+ref table LocalDateTable_0b2dac64-ee50-4e78-b2ae-85f0d99be0d3
+ref table LocalDateTable_ea4b7884-8199-42a8-9199-3373014d20d8
+ref table LocalDateTable_c023b5e8-e321-4989-b65c-f9b82b7a72ba
+ref table Temps
+ref table Fournisseurs
+ref table Date
+ref table 'Financial Metrics'
+ref table 'Resource Allocation Metrics'
+ref table 'Project Performance Metrics'
+ref table Parameter
+ref table 'Parameter 2'
+ref table 'Unité d‘oeuvre'
+ref table 'Projet Détail'
+ref table LocalDateTable_b01f0614-7953-47f9-8e58-b1227414741f
+ref table LocalDateTable_04a1e302-02d1-49c3-a7e7-b0b52b3f3a3f
+ref table LocalDateTable_e493d1af-1d27-47c4-bf9f-1453097b40b5
+ref table LocalDateTable_d5faac75-6bf9-4f8e-852c-24458f2c565d
+ref table Time_Mode
+ref table 'User Access'
+
+ref role 'Manager View'
+
+ref cultureInfo en-US
+

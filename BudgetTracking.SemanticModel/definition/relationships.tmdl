@@ -1,0 +1,118 @@
+relationship aa035cf7-b534-4909-955c-c5920a6e92eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Projets.Début
+	toColumn: LocalDateTable_9b9d29f0-1baf-43b5-b415-8e81f98a1c3c.Date
+
+relationship 738cb9b2-5f7e-48c3-91c2-90edf14a4f41
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Projets.Fin
+	toColumn: LocalDateTable_f31b20e9-b615-4d9c-8a29-21560043456b.Date
+
+relationship 4ee2a327-fa83-4d1f-859a-d5078c18879f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Projets.'Date de création'
+	toColumn: LocalDateTable_57d1ecef-2ded-490d-ae1a-6deb522bd0ea.Date
+
+relationship 50fe98fd-ea30-421f-ba61-17ae2bb3c4ca
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Projets.'Date de mise à jour'
+	toColumn: LocalDateTable_f26db8ed-bfed-42fe-8b7c-22c90d11c856.Date
+
+relationship 2688049e-476d-4697-9768-162fe3742c72
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Ressources.Disponibilité
+	toColumn: LocalDateTable_93a393e0-85fb-4ecc-94e8-6b11ed0d871c.Date
+
+relationship b99ebaa8-5b60-4155-af2f-d49b20950a08
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Ressources.'Date de naissance'
+	toColumn: LocalDateTable_d9b0f0ed-bd45-4c83-9b4f-d4cc3b9ba102.Date
+
+relationship bd89cfd5-c9c3-47d5-89ee-371584fd468b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Ressources.'Date de création'
+	toColumn: LocalDateTable_0b2dac64-ee50-4e78-b2ae-85f0d99be0d3.Date
+
+relationship 6b8f0caa-d2b0-434a-b17e-bf671fdf325a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Ressources.'Date de mise à jour'
+	toColumn: LocalDateTable_ea4b7884-8199-42a8-9199-3373014d20d8.Date
+
+relationship 9b0abcd6-782e-49d8-ba39-97ed707acab9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Ressources.'Date de démarrage'
+	toColumn: LocalDateTable_c023b5e8-e321-4989-b65c-f9b82b7a72ba.Date
+
+relationship AutoDetected_70363a70-72e1-4218-8fc9-d54ae967a3be
+	fromColumn: 'Projet signé'.ressourceID
+	toColumn: Fournisseurs.ressourceID
+
+relationship 9b316417-917c-7560-2b12-8e07cff70ca5
+	fromColumn: 'Projet Prestation'.projetID
+	toColumn: Projets.'Référence interne'
+
+relationship 2e807a8a-0c84-92ca-3bdc-628681996dc2
+	fromColumn: 'Projet signé'.projectID
+	toColumn: Projets.'Référence interne'
+
+relationship 2b25cabc-10a6-ef1b-c034-fc69f0fe6957
+	fromColumn: 'Projet signé'.ressourceID
+	toColumn: Ressources.'Référence interne'
+
+relationship e5281a4f-1616-02e4-f472-bbfad63db31b
+	fromColumn: Temps.'Type d''unité d''oeuvre - Code'
+	toColumn: 'Unité d‘oeuvre'.'Type d''unité d''oeuvre - Code'
+
+relationship 9eb9deb5-c7a8-ca8e-f3b6-97c088b53f46
+	fromColumn: Temps.'Ressource - Référence interne'
+	toColumn: Ressources.'Référence interne'
+
+relationship 55926c1e-05b1-43be-9c0e-beb678ea33d0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Projet Détail'.creationDate
+	toColumn: LocalDateTable_b01f0614-7953-47f9-8e58-b1227414741f.Date
+
+relationship 5e1cea84-3584-4cad-b892-f112e3b62b56
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Projet Détail'.updateDate
+	toColumn: LocalDateTable_04a1e302-02d1-49c3-a7e7-b0b52b3f3a3f.Date
+
+relationship AutoDetected_49d8af19-7903-4a8a-a4d2-92aebef2c4f1
+	fromColumn: 'Projet signé'.projectID
+	toColumn: 'Projet Détail'.projectID
+
+relationship dc00d8d9-f025-ea94-babe-705aa5406a43
+	fromColumn: Temps.ProjetID
+	toColumn: Projets.'Référence interne'
+
+relationship 64922721-da3e-497b-a027-be5d356a1dd5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date.Date
+	toColumn: LocalDateTable_e493d1af-1d27-47c4-bf9f-1453097b40b5.Date
+
+relationship 7fa752ee-8eb4-1443-b4a9-66a7517b90eb
+	fromColumn: Temps.'Parsed Date'
+	toColumn: Date.Date
+
+relationship f74633a6-5e6d-6f92-4bdb-fce56714f48e
+	fromColumn: 'Projet Prestation'.date
+	toColumn: Date.Date
+
+relationship 61e2a62c-d268-71db-e53d-a5c638446276
+	fromColumn: 'Projet signé'.startDate
+	toColumn: Date.Date
+
+relationship 7c9a31fa-18be-b58c-af7c-afbf77250d23
+	isActive: false
+	fromColumn: 'Projet signé'.endDate
+	toColumn: Date.Date
+
+relationship 72340705-3f0a-41eb-ae78-930a9ad652dc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date.Month
+	toColumn: LocalDateTable_d5faac75-6bf9-4f8e-852c-24458f2c565d.Date
+
+relationship 0ae2f958-7210-6c8f-4af3-215df0b66f9d
+	fromColumn: Projets.'Responsable manager'
+	toColumn: 'User Access'.'Manager Name'
+

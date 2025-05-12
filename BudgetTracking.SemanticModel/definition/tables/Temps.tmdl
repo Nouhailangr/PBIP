@@ -1,0 +1,140 @@
+table Temps
+	lineageTag: 6527dde4-3490-47ff-bfab-e62aef184b09
+
+	column Date
+		dataType: string
+		lineageTag: 81c3b3e2-c1b4-4cfc-af29-62a58b7418a3
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projet - Référence'
+		dataType: string
+		lineageTag: 38e54d3c-2c37-4535-9c79-0fcc87193b87
+		summarizeBy: none
+		sourceColumn: Projet - Référence
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Durée
+		dataType: int64
+		formatString: 0
+		lineageTag: ecb2563c-d576-41b8-a6ae-59581811d542
+		summarizeBy: sum
+		sourceColumn: Durée
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DuréeCumul
+		dataType: double
+		lineageTag: 235fe220-c4cb-4bda-a652-8dfd04cd250d
+		summarizeBy: sum
+		sourceColumn: DuréeCumul
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ProjetID
+		dataType: int64
+		formatString: 0
+		lineageTag: 608cdc44-f007-49a9-876f-38320c27308c
+		summarizeBy: none
+		sourceColumn: ProjetID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MontantCumul
+		dataType: int64
+		formatString: 0
+		lineageTag: 6664d207-2c22-4d63-927a-224a2574fb00
+		summarizeBy: sum
+		sourceColumn: MontantCumul
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parsed Date' = ```
+			
+			VAR DayText = MID('Temps'[Date], SEARCH(" ", 'Temps'[Date]) + 1, SEARCH(" ", 'Temps'[Date], SEARCH(" ", 'Temps'[Date]) + 1) - SEARCH(" ", 'Temps'[Date]) - 1)
+			VAR MonthText = MID('Temps'[Date], SEARCH(" ", 'Temps'[Date], SEARCH(" ", 'Temps'[Date]) + 1) + 1, SEARCH(" ", 'Temps'[Date], SEARCH(" ", 'Temps'[Date], SEARCH(" ", 'Temps'[Date]) + 1) + 1) - SEARCH(" ", 'Temps'[Date], SEARCH(" ", 'Temps'[Date]) + 1) - 1)
+			VAR YearText = RIGHT('Temps'[Date], 4)
+			
+			VAR MonthNum = 
+			SWITCH(TRUE(),
+			    MonthText = "janvier", 1,
+			    MonthText = "février", 2,
+			    MonthText = "mars", 3,
+			    MonthText = "avril", 4,
+			    MonthText = "mai", 5,
+			    MonthText = "juin", 6,
+			    MonthText = "juillet", 7,
+			    MonthText = "août", 8,
+			    MonthText = "septembre", 9,
+			    MonthText = "octobre", 10,
+			    MonthText = "novembre", 11,
+			    MonthText = "décembre", 12
+			)
+			
+			RETURN
+			DATE(VALUE(YearText), MonthNum, VALUE(DayText))
+			
+			```
+		formatString: General Date
+		lineageTag: b6019055-928a-4247-a6e8-1d411bd52e12
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ressource - Référence interne'
+		dataType: int64
+		formatString: 0
+		lineageTag: cfbd33ad-de6a-45ed-845b-055bde381217
+		summarizeBy: none
+		sourceColumn: Ressource - Référence interne
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type d''unité d''oeuvre - Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 777a4133-e574-4d41-bc0c-72f47ec01ced
+		summarizeBy: none
+		sourceColumn: Type d'unité d'oeuvre - Code
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Temps = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Nouhaila\OneDrive - Ministere de l'education nationale, du préscolaire et des sports\BCP TECH 🎠\DATA_BOONMANAGER_BI_ANONYMISÉ_COMPLET.xlsx"), null, true),
+				    Temps_Sheet = Source{[Item="Temps",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Temps_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Ressource - Référence interne", Int64.Type}, {"Ressource - Nom", type text}, {"Ressource - Prénom", type text}, {"Ressource - Matricule", type any}, {"Ressource - Type", type text}, {"Date", type text}, {"Projet - Référence", type text}, {"Prestation", type text}, {"Projet - Société", type text}, {"Type d'unité d'oeuvre - Code", Int64.Type}, {"Type d'unité d'oeuvre - Nom", type text}, {"Durée", Int64.Type}, {"DuréeCumul", type number}, {"ProjetID", Int64.Type}, {"MontantCumul", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Ressource - Nom", "Ressource - Prénom", "Ressource - Matricule", "Ressource - Type", "Prestation", "Projet - Société", "Type d'unité d'oeuvre - Nom"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

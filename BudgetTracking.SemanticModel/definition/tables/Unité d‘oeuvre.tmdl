@@ -1,0 +1,41 @@
+table 'Unité d‘oeuvre'
+	lineageTag: 1f9b1b6d-13e6-4cee-a8b5-2dce674873c3
+
+	column 'Type d''unité d''oeuvre - Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 67cb65ed-a51e-4ffb-9d84-6a691d47d6c5
+		summarizeBy: none
+		sourceColumn: Type d'unité d'oeuvre - Code
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type d''unité d''oeuvre - Nom'
+		dataType: string
+		lineageTag: 7d5735f9-34a9-4631-8155-cc6cc8cb3d36
+		summarizeBy: none
+		sourceColumn: Type d'unité d'oeuvre - Nom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Unité d‘oeuvre' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Nouhaila\OneDrive - Ministere de l'education nationale, du préscolaire et des sports\BCP TECH 🎠\DATA_BOONMANAGER_BI_ANONYMISÉ_COMPLET.xlsx"), null, true),
+				    Temps_Sheet = Source{[Item="Temps",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Temps_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Ressource - Référence interne", Int64.Type}, {"Ressource - Nom", type text}, {"Ressource - Prénom", type text}, {"Ressource - Matricule", type any}, {"Ressource - Type", type text}, {"Date", type text}, {"Projet - Référence", type text}, {"Prestation", type text}, {"Projet - Société", type text}, {"Type d'unité d'oeuvre - Code", Int64.Type}, {"Type d'unité d'oeuvre - Nom", type text}, {"Durée", Int64.Type}, {"DuréeCumul", type number}, {"ProjetID", Int64.Type}, {"MontantCumul", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Ressource - Nom", "Ressource - Prénom", "Ressource - Matricule", "Ressource - Type", "Prestation", "Projet - Société", "Ressource - Référence interne", "Date", "Projet - Référence", "Durée", "DuréeCumul", "MontantCumul", "ProjetID"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns", {"Type d'unité d'oeuvre - Code"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

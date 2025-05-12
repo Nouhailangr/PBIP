@@ -1,0 +1,575 @@
+table Ressources
+	lineageTag: 26770af0-2f26-4073-96c4-231fe13e38f3
+
+	column 'Référence interne'
+		dataType: string
+		lineageTag: 4ce8b2c0-bde2-4d5c-8adc-419020a6f0ce
+		summarizeBy: none
+		sourceColumn: Référence interne
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Matricule
+		dataType: string
+		lineageTag: 3040208e-d12a-46c2-8537-ca4d6b5d27c1
+		summarizeBy: none
+		sourceColumn: Matricule
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Civilité
+		dataType: string
+		lineageTag: 796fd8ed-6b6f-4a20-b685-427de01fe78a
+		summarizeBy: none
+		sourceColumn: Civilité
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nom
+		dataType: string
+		lineageTag: 6ea02593-eb39-4179-8c85-184427b48e8f
+		summarizeBy: none
+		sourceColumn: Nom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prénom
+		dataType: string
+		lineageTag: aab00e90-0bdd-4cf4-a191-e33e2d47d715
+		summarizeBy: none
+		sourceColumn: Prénom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 30535327-cab6-448e-8b53-4c546ea7b27a
+		summarizeBy: none
+		sourceColumn: Type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column État
+		dataType: string
+		lineageTag: 636f7d45-069e-44c5-a819-b7925b571dfc
+		summarizeBy: none
+		sourceColumn: État
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Titre
+		dataType: string
+		lineageTag: ce968693-5100-443b-8e25-4c1f15a4eaab
+		summarizeBy: none
+		sourceColumn: Titre
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Compétences
+		dataType: string
+		lineageTag: 3ae52da7-8416-4a64-991c-91284b9bedde
+		summarizeBy: none
+		sourceColumn: Compétences
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Domaine d''application'
+		dataType: string
+		lineageTag: 075656b7-1867-4ac2-9bd9-bc848222b763
+		summarizeBy: none
+		sourceColumn: Domaine d'application
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Formation
+		dataType: string
+		lineageTag: c525b1a0-5aba-4e6d-8dfb-82c0edba0c32
+		summarizeBy: none
+		sourceColumn: Formation
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Expérience
+		dataType: string
+		lineageTag: ce71dd3a-2b7e-4f7f-b519-d4cbbb2c0f7a
+		summarizeBy: none
+		sourceColumn: Expérience
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Disponibilité
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 95827585-ce32-4fe6-bfbd-7c9f4f1cc85d
+		summarizeBy: none
+		sourceColumn: Disponibilité
+
+		variation Variation
+			isDefault
+			relationship: 2688049e-476d-4697-9768-162fe3742c72
+			defaultHierarchy: LocalDateTable_93a393e0-85fb-4ecc-94e8-6b11ed0d871c.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Devise
+		dataType: string
+		lineageTag: 37167330-ff88-4df2-b1f2-b98119e85d2b
+		summarizeBy: none
+		sourceColumn: Devise
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tarif HT'
+		dataType: double
+		lineageTag: 6c3e339e-1f4d-4d1b-9f91-b9c695dd6497
+		summarizeBy: sum
+		sourceColumn: Tarif HT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Mobilité
+		dataType: string
+		lineageTag: 67f6cf6d-9c92-40f7-831b-698dc5965029
+		summarizeBy: none
+		sourceColumn: Mobilité
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Email 1'
+		dataType: string
+		lineageTag: 7d28e32c-996d-472c-a8a8-ff9f562565ea
+		summarizeBy: none
+		sourceColumn: Email 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Email 2'
+		dataType: string
+		lineageTag: b8d4cc1d-7726-4b30-b3c0-da6b798b0769
+		summarizeBy: none
+		sourceColumn: Email 2
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Email 3'
+		dataType: string
+		lineageTag: 2d13d6e3-210c-4f9a-9ddd-d725b4962257
+		summarizeBy: none
+		sourceColumn: Email 3
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Téléphone 1'
+		dataType: string
+		lineageTag: be25f1e0-a5f8-4d02-8b39-ab15f5669606
+		summarizeBy: none
+		sourceColumn: Téléphone 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Téléphone 2'
+		dataType: string
+		lineageTag: 3d8f60a6-7186-4e6c-818d-3175e96bebc0
+		summarizeBy: none
+		sourceColumn: Téléphone 2
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Téléphone 3'
+		dataType: string
+		lineageTag: c8467142-bb43-4ba9-85e4-6e6f939f3c40
+		summarizeBy: none
+		sourceColumn: Téléphone 3
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date de naissance'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 19183b58-30d4-4f33-9275-52bc23292ea5
+		summarizeBy: none
+		sourceColumn: Date de naissance
+
+		variation Variation
+			isDefault
+			relationship: b99ebaa8-5b60-4155-af2f-d49b20950a08
+			defaultHierarchy: LocalDateTable_d9b0f0ed-bd45-4c83-9b4f-d4cc3b9ba102.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nationalité
+		dataType: string
+		lineageTag: 7867e87d-496a-4f3b-a8e1-c1b8589d7642
+		summarizeBy: none
+		sourceColumn: Nationalité
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Situation familiale'
+		dataType: string
+		lineageTag: 96a9ebad-0d8c-4333-988b-5f46e549614b
+		summarizeBy: none
+		sourceColumn: Situation familiale
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Numéro de sécurité sociale'
+		dataType: string
+		lineageTag: 9ed30d41-45b1-4a83-95c0-46784bded1d7
+		summarizeBy: none
+		sourceColumn: Numéro de sécurité sociale
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pos_ actif'
+		dataType: int64
+		formatString: 0
+		lineageTag: d941598e-9d0f-46e0-92e6-16098585f62b
+		summarizeBy: sum
+		sourceColumn: Pos_ actif
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Adresse
+		dataType: string
+		lineageTag: 781fa93c-48aa-4270-9d42-253acaf6671a
+		summarizeBy: none
+		sourceColumn: Adresse
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code Postal'
+		dataType: int64
+		formatString: 0
+		lineageTag: 599e3769-ab7d-4348-a74e-d252d503ab3f
+		summarizeBy: sum
+		sourceColumn: Code Postal
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ville
+		dataType: string
+		lineageTag: aa54d955-3180-4a87-b0d9-e8985a73704b
+		summarizeBy: none
+		sourceColumn: Ville
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pays
+		dataType: string
+		lineageTag: 9f86fe27-db32-4a16-baf6-676164bbed1a
+		summarizeBy: none
+		sourceColumn: Pays
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Responsable manager'
+		dataType: string
+		lineageTag: 09ff84f6-fc5d-4d92-b162-423e77df3809
+		summarizeBy: none
+		sourceColumn: Responsable manager
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Responsable RH'
+		dataType: string
+		lineageTag: 84960b50-bb3a-4889-a766-9e3bd501157a
+		summarizeBy: none
+		sourceColumn: Responsable RH
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pôle
+		dataType: string
+		lineageTag: fc038bec-2703-421d-a85c-f59aad035ea9
+		summarizeBy: none
+		sourceColumn: Pôle
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Agence
+		dataType: string
+		lineageTag: 4011d8c1-7a86-4a22-8aea-ae8f7f542fa4
+		summarizeBy: none
+		sourceColumn: Agence
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date de création'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f101a607-95e8-4113-bc17-19b0bd29f30d
+		summarizeBy: none
+		sourceColumn: Date de création
+
+		variation Variation
+			isDefault
+			relationship: bd89cfd5-c9c3-47d5-89ee-371584fd468b
+			defaultHierarchy: LocalDateTable_0b2dac64-ee50-4e78-b2ae-85f0d99be0d3.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date de mise à jour'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e65ef0d1-55cd-416a-bdb7-3ddb9687c7db
+		summarizeBy: none
+		sourceColumn: Date de mise à jour
+
+		variation Variation
+			isDefault
+			relationship: 6b8f0caa-d2b0-434a-b17e-bf671fdf325a
+			defaultHierarchy: LocalDateTable_ea4b7884-8199-42a8-9199-3373014d20d8.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commentaires (informations)'
+		dataType: string
+		lineageTag: bb1ed1aa-e297-4f45-b425-3c4c8aa25134
+		summarizeBy: none
+		sourceColumn: Commentaires (informations)
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Outils
+		dataType: string
+		lineageTag: bbc67452-d758-43a7-aff0-83f8ec859761
+		summarizeBy: none
+		sourceColumn: Outils
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Langues
+		dataType: string
+		lineageTag: d524aac8-5a01-4101-9f03-bcbcb7038f8b
+		summarizeBy: none
+		sourceColumn: Langues
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Diplômes
+		dataType: string
+		lineageTag: 8342ea09-2c6d-4b8b-848e-b881e15b2dd3
+		summarizeBy: none
+		sourceColumn: Diplômes
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Secteurs
+		dataType: string
+		lineageTag: 80dbede8-8c5e-4614-b613-103fdd76a0b9
+		summarizeBy: none
+		sourceColumn: Secteurs
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Candidat - Référence interne'
+		dataType: string
+		lineageTag: f9877e68-7b33-4e4a-86f4-8d69aea1620a
+		summarizeBy: none
+		sourceColumn: Candidat - Référence interne
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nb CV'
+		dataType: int64
+		formatString: 0
+		lineageTag: e551016f-d15c-4310-8b58-c01491d0072f
+		summarizeBy: sum
+		sourceColumn: Nb CV
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date de démarrage'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c9e389dc-1971-46b8-83c1-20e33d911d0a
+		summarizeBy: none
+		sourceColumn: Date de démarrage
+
+		variation Variation
+			isDefault
+			relationship: 9b0abcd6-782e-49d8-ba39-97ed707acab9
+			defaultHierarchy: LocalDateTable_c023b5e8-e321-4989-b65c-f9b82b7a72ba.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ancienneté
+		dataType: string
+		lineageTag: 8cc69454-8411-4bdd-964c-b9de49bdb784
+		summarizeBy: none
+		sourceColumn: Ancienneté
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Etat - motif'
+		dataType: string
+		lineageTag: da8f0d03-078f-4539-9166-e094d14150a2
+		summarizeBy: none
+		sourceColumn: Etat - motif
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Motif - Commentaire'
+		dataType: string
+		lineageTag: 41f5b22d-e226-4089-9d9e-bb11298ac2e7
+		summarizeBy: none
+		sourceColumn: Motif - Commentaire
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fonction
+		dataType: string
+		lineageTag: d09691e1-6137-4bce-abf4-29e5054eb81c
+		summarizeBy: none
+		sourceColumn: Fonction
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TJM
+		dataType: double
+		lineageTag: 14394974-f0ea-4695-9108-276c806b5607
+		summarizeBy: sum
+		sourceColumn: TJM
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TJM-MAD =
+			
+			IF(
+			    'Ressources'[Devise] = "Dirham Marocain",
+			    'Ressources'[Tarif HT],
+			    IF(
+			        'Ressources'[Devise] = "Euro",
+			        'Ressources'[Tarif HT] * 10.6,
+			        BLANK()
+			    )
+			)
+		lineageTag: af5f4605-ece2-48c8-bb51-dcde2791c3e4
+		summarizeBy: sum
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Ressources = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Nouhaila\OneDrive - Ministere de l'education nationale, du préscolaire et des sports\BCP TECH 🎠\DATA_BOONMANAGER_BI_ANONYMISÉ_COMPLET.xlsx"), null, true),
+				    Ressources_Sheet = Source{[Item="Ressources",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Ressources_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Référence interne", type text}, {"Matricule", type any}, {"Civilité", type text}, {"Nom", type text}, {"Prénom", type text}, {"Type", type text}, {"État", type text}, {"Titre", type text}, {"Compétences", type text}, {"Domaine d'application", type text}, {"Formation", type text}, {"Expérience", type text}, {"Disponibilité", type datetime}, {"Devise", type text}, {"Tarif HT", type number}, {"Mobilité", type any}, {"Email 1", type text}, {"Email 2", type any}, {"Email 3", type any}, {"Téléphone 1", type text}, {"Téléphone 2", type any}, {"Téléphone 3", type any}, {"Date de naissance", type datetime}, {"Nationalité", type text}, {"Situation familiale", type text}, {"Numéro de sécurité sociale", type any}, {"Pos_ actif", Int64.Type}, {"Adresse", type any}, {"Code Postal", Int64.Type}, {"Ville", type text}, {"Pays", type text}, {"Responsable manager", type text}, {"Responsable RH", type text}, {"Pôle", type text}, {"Agence", type text}, {"Date de création", type datetime}, {"Date de mise à jour", type datetime}, {"Commentaires (informations)", type text}, {"Outils", type any}, {"Langues", type text}, {"Diplômes", type text}, {"Secteurs", type text}, {"Candidat - Référence interne", type text}, {"Nb CV", Int64.Type}, {"Date de démarrage", type datetime}, {"Ancienneté", type text}, {"Etat - motif", type any}, {"Motif - Commentaire", type any}, {"Fonction", type text}, {"TJM", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,35 @@
+table 'User Access'
+	lineageTag: 01e9b19b-9c62-47a5-be2a-130df147743a
+
+	column 'Manager Name'
+		dataType: string
+		lineageTag: 3047225c-0e92-469b-bed4-e1a036508aa2
+		summarizeBy: none
+		sourceColumn: Manager Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'User Email'
+		dataType: string
+		lineageTag: 7f6f0bcb-0052-4ad4-b20e-dcc4d42b4a87
+		summarizeBy: none
+		sourceColumn: User Email
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'User Access' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8k3MS0xPLYo3MFbSUcqFcAyMHZLzcwsS8yr1gLRSrA6SMhMkZSaoymIB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Manager Name" = _t, #"User Email" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Manager Name", type text}, {"User Email", type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","Manager_03","Manager__03",Replacer.ReplaceText,{"Manager Name"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","Manager__03","Manager_003",Replacer.ReplaceText,{"Manager Name"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","Manager_04","Manager_004",Replacer.ReplaceText,{"Manager Name"})
+				in
+				    #"Replaced Value2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

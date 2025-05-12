@@ -1,0 +1,26 @@
+table Time_Mode
+	lineageTag: 18a8ba47-615f-4712-8c9b-1774dadb1e92
+
+	column 'Time Mode'
+		lineageTag: 52ca26fa-f613-4b9c-a783-4d129bdf8332
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Time Mode]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Time_Mode = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Time Mode", STRING,
+				    {
+				        {"Last Month"},{"Last Year"},{"Year to Date"}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = c3ae206c85e34d25992b4d47ff58c819
+
