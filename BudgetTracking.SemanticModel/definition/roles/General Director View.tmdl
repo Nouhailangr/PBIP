@@ -1,0 +1,7 @@
+role 'General Director View'
+	modelPermission: read
+
+	tablePermission Projets = 1 == 1
+
+	annotation PBI_Id = 19dded1babcc46a08d1484b2113b25a2
+

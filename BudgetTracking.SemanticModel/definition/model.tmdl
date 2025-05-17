@@ -10,7 +10,7 @@ annotation PBI_QueryOrder = ["Projets","Projet signé","Projet Prestation","Ress
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.142.928.0 (25.04)+de52df9f0bb74ad93a80d89c52d63fe6d07e0e1b
+annotation PBIDesktopVersion = 2.142.1277.0 (25.04)+014fde450f93691fc9537f0758d73d1c5df153ef
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -46,6 +46,7 @@ ref table Time_Mode
 ref table 'User Access'
 
 ref role 'Manager View'
+ref role 'General Director View'
 
 ref cultureInfo en-US
 

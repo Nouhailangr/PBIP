@@ -4,6 +4,7 @@ table DateTableTemplate_7ef75b79-5f87-41a8-a762-b9b0dbf64b2d
 
 	column Date
 		dataType: dateTime
+		isHidden
 		lineageTag: 7dce8235-3244-4259-a492-d6c20540ba7b
 		dataCategory: PaddedDateTableDates
 		summarizeBy: none
@@ -14,6 +15,7 @@ table DateTableTemplate_7ef75b79-5f87-41a8-a762-b9b0dbf64b2d
 
 	column Year = YEAR([Date])
 		dataType: int64
+		isHidden
 		lineageTag: 66aae9f1-e249-4897-8c6e-6478693886d2
 		dataCategory: Years
 		summarizeBy: none
@@ -24,6 +26,7 @@ table DateTableTemplate_7ef75b79-5f87-41a8-a762-b9b0dbf64b2d
 
 	column MonthNo = MONTH([Date])
 		dataType: int64
+		isHidden
 		lineageTag: 245098da-3946-419c-ae57-28ad92103af9
 		dataCategory: MonthOfYear
 		summarizeBy: none
@@ -34,6 +37,7 @@ table DateTableTemplate_7ef75b79-5f87-41a8-a762-b9b0dbf64b2d
 
 	column Month = FORMAT([Date], "MMMM")
 		dataType: string
+		isHidden
 		lineageTag: a2443175-f47e-43ec-a151-30bc2a6b9ef2
 		dataCategory: Months
 		summarizeBy: none
@@ -45,6 +49,7 @@ table DateTableTemplate_7ef75b79-5f87-41a8-a762-b9b0dbf64b2d
 
 	column QuarterNo = INT(([MonthNo] + 2) / 3)
 		dataType: int64
+		isHidden
 		lineageTag: 613cf3de-0f92-4332-9424-39154c596d7d
 		dataCategory: QuarterOfYear
 		summarizeBy: none
@@ -55,6 +60,7 @@ table DateTableTemplate_7ef75b79-5f87-41a8-a762-b9b0dbf64b2d
 
 	column Quarter = "Qtr " & [QuarterNo]
 		dataType: string
+		isHidden
 		lineageTag: 0f36cd7c-d587-4591-9c3f-37940f12c0ee
 		dataCategory: Quarters
 		summarizeBy: none
@@ -66,6 +72,7 @@ table DateTableTemplate_7ef75b79-5f87-41a8-a762-b9b0dbf64b2d
 
 	column Day = DAY([Date])
 		dataType: int64
+		isHidden
 		lineageTag: ec8b4587-ffea-44c5-8f44-cd2db86b6215
 		dataCategory: DayOfMonth
 		summarizeBy: none

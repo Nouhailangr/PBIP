@@ -903,6 +903,9 @@ table 'Financial Metrics'
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 54adb62b-fd5c-4826-90f5-d047b2b9705b
 
+	measure Measure
+		lineageTag: 96f56eaa-9ed3-47e6-8c3a-641420d21072
+
 	column Column
 		formatString: 0
 		lineageTag: 47832074-d4db-4ad8-85cf-c4af7ada7741
@@ -913,6 +916,7 @@ table 'Financial Metrics'
 		annotation SummarizationSetBy = Automatic
 
 	column Blank = BLANK()
+		isHidden
 		formatString: 0
 		lineageTag: dcf7bd8d-97a0-4b35-ad83-605fe074fbdb
 		summarizeBy: sum

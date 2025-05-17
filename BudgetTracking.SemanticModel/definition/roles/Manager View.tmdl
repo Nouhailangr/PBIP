@@ -1,7 +1,7 @@
 role 'Manager View'
 	modelPermission: read
 
-	tablePermission Projets = RELATED('User Access'[User Email]) = USERPRINCIPALNAME()
+	tablePermission Projets = RELATED('User Access'[Manager Email]) = USERPRINCIPALNAME()
 
 	annotation PBI_Id = 38390257527d4e3b8ad64c97357c5650
 
